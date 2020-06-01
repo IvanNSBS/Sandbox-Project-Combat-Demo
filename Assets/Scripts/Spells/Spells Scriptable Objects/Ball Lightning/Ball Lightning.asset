@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02827a40ef4b0d4f825fab3dc7c18c5, type: 3}
+  m_Name: Ball Lightning
+  m_EditorClassIdentifier: 
+  spellName: Ball Lightning
+  cooldown: 2.5
+  manaCost: 50
+  spellIcon: {fileID: 21300000, guid: e8e615bca8ab6a04f945db7fd2043161, type: 3}
+  spellIconBG: {fileID: 21300000, guid: 4c7afe81ead6fa342802ae55f4fc5645, type: 3}
+  instantiatedGO: {fileID: 4372705002349339849, guid: 119787bf3582cd649a14e38d0e801c08,
+    type: 3}
+  spellSound: {fileID: 8300000, guid: 9b409b2e65af3cf44b3fc61491dce714, type: 3}
+  duration: 25
+  damage: 80
+  ballSpeed: 180
+  castSound: {fileID: 8300000, guid: 43650f868323c804181179d3bd77a50d, type: 3}
