@@ -22,8 +22,10 @@ public class SpellUI : MonoBehaviour
 
     public void UpdateRadialFill(float val)
     {
-        if(_radialFill)
+        if(_radialFill){
             _radialFill.fillAmount = val;
+            _radialFill.enabled = val > 0f;
+        }
     }
 
     public void UpdateGCD(bool onGCD, float val)

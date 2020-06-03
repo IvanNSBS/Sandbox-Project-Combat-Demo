@@ -16,10 +16,10 @@ MonoBehaviour:
   cooldown: 3
   manaCost: 0
   charges: 2
-  spellIcon: {fileID: 21300000, guid: 129e16452a3c2c54abdcf7f1223294ba, type: 3}
+  spellIcon: {fileID: 21300000, guid: d8a494b709770cf45aa01aab6e914345, type: 3}
   spellIconBG: {fileID: 21300000, guid: 12bca970e9362d44d815108036294564, type: 3}
   instantiatedGO: {fileID: 6862940225621161305, guid: 89e285d7d98c4f14a8af9f1ae5f802eb,
     type: 3}
   spellSound: {fileID: 8300000, guid: 7c4b8e2bd3eec5c438d9f8ee919c6973, type: 3}
-  atkDamage: 0
-  atkRange: 0
+  atkDamage: 100
+  atkRange: 1.1

@@ -32,7 +32,7 @@ public class CombatAttacker : MonoBehaviour, IParticipant
     public float atkRange {
         get {
             if (_weapon != null)
-                return _weapon.atkDamage;
+                return _weapon.atkRange;
 
             return -1f;
         } 
@@ -57,12 +57,10 @@ public class CombatAttacker : MonoBehaviour, IParticipant
 
     private void AnimateAndAttack()
     {
+        _spriteMaterial.SetFloat("_Lerp", 0.5f);
         Sequence sq = DOTween.Sequence();
-        sq.Append(_spriteMaterial.DOFloat(0.5f, "_Lerp", 0.15f));
-        sq.AppendInterval(0.5f);
         sq.Append(_spriteMaterial.DOFloat(1f, "_Lerp", 0.4f));
-
-        sq.InsertCallback(0.65f, () => {
+        sq.InsertCallback(0f, () => {
             Vector3 direction = target.transform.position - gameObject.transform.position;
             direction = direction.normalized;
             float sine = 0.7071f;
@@ -71,15 +69,8 @@ public class CombatAttacker : MonoBehaviour, IParticipant
             _doPunchObject.transform.DOPunchPosition(direction, 0.2f, 15, 0, false); 
         });
 
-        sq.InsertCallback(0.65f, () => {
-            target.TakeDamage(_weapon.atkDamage);
-            // if (_dmgSounds.Count > 0)
-            // {
-            //     int count = _dmgSounds.Count - 1;
-            //     int idx = Random.Range(0, count);
-
-            //     GameplayUtils.SpawnSound(_dmgSounds[idx], gameObject.transform.position);
-            // }
+        sq.InsertCallback(0f, () => {
+            weaponSlot.CastSpell(gameObject);
 
             GameplayUtils.SpawnSound(_weapon.spellSound, gameObject.transform.position);
 
@@ -88,18 +79,29 @@ public class CombatAttacker : MonoBehaviour, IParticipant
                 var atk = Instantiate(_weapon.instantiatedGO);
                 atk.transform.position = target.transform.position;
             }
+
+            // target.TakeDamage(_weapon.atkDamage);
+            // if (_dmgSounds.Count > 0)
+            // {
+            //     int count = _dmgSounds.Count - 1;
+            //     int idx = Random.Range(0, count);
+
+            //     GameplayUtils.SpawnSound(_dmgSounds[idx], gameObject.transform.position);
+            // }
         });
     }
 
     public void TryAttack()
     {
-        weaponSlot.CastSpell(gameObject);
+        if(weaponSlot.currentCharges == 0)
+            return;
+
         if(target != null && _canAttack)
         {
             if (Vector3.Distance(target.gameObject.transform.position, gameObject.transform.position) <= atkRange)
             {
                 AnimateAndAttack();
-                _canAttack = weaponSlot.currentCharges == 0;
+                _canAttack = weaponSlot.currentCharges > 0;
             }
         }
     }
@@ -109,13 +111,13 @@ public class CombatAttacker : MonoBehaviour, IParticipant
         // if (target != null)
         //    TryAttack();
 
-        weaponSlot.UpdateCooldown();
-        weaponSlot.UpdateGCD(!_canAttack, 1f - _turnManager.nextTurnProgress);
-        
-        if (weaponSlot.spellIconAtUI)
-        {
+        weaponSlot.UpdateGCD(weaponSlot.currentCharges == 0, 1f - _turnManager.nextTurnProgress);
+        weaponSlot.spellIconAtUI.UpdateChargesText(weaponSlot.currentCharges, true);
+
+        if (weaponSlot.currentCharges == 0)
+            weaponSlot.spellIconAtUI.SetIconColor(new Color(0.4f, 0.4f, 0.4f));
+        else
             weaponSlot.spellIconAtUI.SetIconColor(Color.white);
-        }
     }
 
     private void Start()
@@ -129,12 +131,15 @@ public class CombatAttacker : MonoBehaviour, IParticipant
                 var uiSlot = Instantiate(_spellUIPrefab, _slotUI.transform);
                 uiSlot.GetComponent<SpellUI>().SetIconAndBorder(_weapon.spellIconBG, _weapon.spellIcon);
                 weaponSlot.spellIconAtUI = uiSlot.GetComponent<SpellUI>();
+                weaponSlot.spellIconAtUI.UpdateCooldownText(0f);
+                weaponSlot.spellIconAtUI.UpdateRadialFill(0f);
             }
         }
     }
 
     public void OnTurnPassed()
     {
+        weaponSlot.ResetCharges();
         _canAttack = _weapon.charges > 0;
     }
 }
