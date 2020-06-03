@@ -72,6 +72,6 @@ public class AISpellCaster : MonoBehaviour, IParticipant
     public void OnTurnPassed()
     {
         _curTurnsWithoutCasting--;
-        Debug.Log("Cur turns without casting: " + _curTurnsWithoutCasting);
+        // Debug.Log("Cur turns without casting: " + _curTurnsWithoutCasting);
     }
 }

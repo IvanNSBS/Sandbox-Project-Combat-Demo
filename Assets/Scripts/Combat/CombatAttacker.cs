@@ -2,24 +2,42 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class CombatAttacker : MonoBehaviour, IParticipant
 {
 
-    [SerializeField] private GlobalTurnManager _turnManager;
-    [SerializeField] private float _atkDamage = 20f;
-    [SerializeField] private float _atkRange = 3f;
-    [SerializeField] List<AudioClip> _dmgSounds;
+    [Header("Animation")]
     [SerializeField] GameObject _doPunchObject; // object DOTween will animate with punch function
     [SerializeField] SpriteRenderer _sprite; // reference to sprite render so AnimateAttack can be animated
-    [SerializeField] GameObject _attackEffect;
 
+
+    [Header("Data")]
+    [SerializeField] private GlobalTurnManager _turnManager;
+    [SerializeField] Weapon _weapon;
+
+
+    [Header("UI")]
+    [SerializeField] GameObject _slotUI;
+    [SerializeField] GameObject _spellUIPrefab;
+
+
+
+    private SpellSlot weaponSlot;
     private Material _spriteMaterial;
     private HealthAndMana _target;
     private bool _canAttack = true;
     
+    public float atkRange {
+        get {
+            if (_weapon != null)
+                return _weapon.atkDamage;
 
-    public float atkRange { get => _atkRange; }
+            return -1f;
+        } 
+    }
+
     public HealthAndMana target {
         get => _target; 
         set {
@@ -54,19 +72,20 @@ public class CombatAttacker : MonoBehaviour, IParticipant
         });
 
         sq.InsertCallback(0.65f, () => {
-            target.TakeDamage(_atkDamage);
-            
-            if (_dmgSounds.Count > 0)
-            {
-                int count = _dmgSounds.Count - 1;
-                int idx = Random.Range(0, count);
+            target.TakeDamage(_weapon.atkDamage);
+            // if (_dmgSounds.Count > 0)
+            // {
+            //     int count = _dmgSounds.Count - 1;
+            //     int idx = Random.Range(0, count);
 
-                GameplayUtils.SpawnSound(_dmgSounds[idx], gameObject.transform.position);
-            }
+            //     GameplayUtils.SpawnSound(_dmgSounds[idx], gameObject.transform.position);
+            // }
 
-            if (_attackEffect)
+            GameplayUtils.SpawnSound(_weapon.spellSound, gameObject.transform.position);
+
+            if (_weapon.instantiatedGO)
             {
-                var atk = Instantiate(_attackEffect);
+                var atk = Instantiate(_weapon.instantiatedGO);
                 atk.transform.position = target.transform.position;
             }
         });
@@ -74,29 +93,48 @@ public class CombatAttacker : MonoBehaviour, IParticipant
 
     public void TryAttack()
     {
+        weaponSlot.CastSpell(gameObject);
         if(target != null && _canAttack)
         {
-            if (Vector3.Distance(target.gameObject.transform.position, gameObject.transform.position) <= _atkRange)
+            if (Vector3.Distance(target.gameObject.transform.position, gameObject.transform.position) <= atkRange)
             {
                 AnimateAndAttack();
-                _canAttack = false;
+                _canAttack = weaponSlot.currentCharges == 0;
             }
         }
     }
 
     private void Update()
     {
-        if (target != null)
-            TryAttack();
+        // if (target != null)
+        //    TryAttack();
+
+        weaponSlot.UpdateCooldown();
+        weaponSlot.UpdateGCD(!_canAttack, 1f - _turnManager.nextTurnProgress);
+        
+        if (weaponSlot.spellIconAtUI)
+        {
+            weaponSlot.spellIconAtUI.SetIconColor(Color.white);
+        }
     }
 
     private void Start()
     {
-        _spriteMaterial = _sprite.material;   
+        _spriteMaterial = _sprite.material;
+
+        if(_weapon != null){
+            weaponSlot = new SpellSlot(_weapon);
+
+            if(_slotUI != null){
+                var uiSlot = Instantiate(_spellUIPrefab, _slotUI.transform);
+                uiSlot.GetComponent<SpellUI>().SetIconAndBorder(_weapon.spellIconBG, _weapon.spellIcon);
+                weaponSlot.spellIconAtUI = uiSlot.GetComponent<SpellUI>();
+            }
+        }
     }
 
     public void OnTurnPassed()
     {
-        _canAttack = true;
+        _canAttack = _weapon.charges > 0;
     }
 }

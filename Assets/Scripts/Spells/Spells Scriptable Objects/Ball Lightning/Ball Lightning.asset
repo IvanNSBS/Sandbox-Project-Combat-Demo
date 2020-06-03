@@ -15,6 +15,7 @@ MonoBehaviour:
   spellName: Ball Lightning
   cooldown: 2.5
   manaCost: 50
+  charges: 1
   spellIcon: {fileID: 21300000, guid: e8e615bca8ab6a04f945db7fd2043161, type: 3}
   spellIconBG: {fileID: 21300000, guid: 4c7afe81ead6fa342802ae55f4fc5645, type: 3}
   instantiatedGO: {fileID: 4372705002349339849, guid: 119787bf3582cd649a14e38d0e801c08,

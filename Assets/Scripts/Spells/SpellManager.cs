@@ -5,17 +5,23 @@ public class SpellSlot
 {
     public void UpdateCooldown()
     {
-        if (onCooldown)
+        if (currentCharges < spell.charges)
         {
             currentCooldown -= Time.deltaTime;
             if (currentCooldown <= 0f)
+            {
+                currentCharges++;
                 onCooldown = false;
+                if(currentCharges < spell.charges)
+                    currentCooldown = spell.cooldown;
+            }
         }
 
         if (spellIconAtUI)
         {
             spellIconAtUI.UpdateRadialFill(cooldownPercent);
             spellIconAtUI.UpdateCooldownText(currentCooldown);
+            spellIconAtUI.UpdateChargesText(currentCharges, spell.charges > 1);
         }
     }
 
@@ -25,11 +31,28 @@ public class SpellSlot
             spellIconAtUI.UpdateGCD(onGCD, val);
     }
 
+    public void ResetCharges(){
+        currentCharges = spell.charges;
+    }
+
     public void CastSpell(GameObject caster)
     {
+        if(currentCharges == 0)
+            return;
+
+        if(currentCharges == spell.charges)
+            currentCooldown = spell.cooldown;
+
+        currentCharges--;
         spell.Cast(caster);
-        currentCooldown = spell.cooldown;
-        onCooldown = true;
+        if(currentCharges == 0)
+            onCooldown = true;
+    }
+
+    public SpellSlot(){}
+    public SpellSlot(SpellObject sp){
+        spell = sp;
+        ResetCharges();
     }
 
     [HideInInspector] public SpellUI spellIconAtUI;
@@ -39,8 +62,9 @@ public class SpellSlot
     [HideInInspector] public float cooldownPercent { get => currentCooldown / spell.cooldown; }
     [HideInInspector] public float manaCost { get => spell.manaCost; }
     [HideInInspector] public bool isNull { get => spell == null; }
+    [HideInInspector] public int currentCharges = 1;
     [SerializeField] private SpellObject spell;
-    private float currentCooldown;
+    private float currentCooldown = 0f;
 }
 
 public class SpellManager : MonoBehaviour, IParticipant
@@ -85,6 +109,10 @@ public class SpellManager : MonoBehaviour, IParticipant
     {
         status = GetComponent<HealthAndMana>();
         _turnManager.Subscribe(this);
+
+        foreach(SpellSlot slot in _availableSpells){
+            slot.ResetCharges();
+        }
     }
 
     // Update is called once per frame

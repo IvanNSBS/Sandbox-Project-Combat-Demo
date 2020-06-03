@@ -173,6 +173,9 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha6))
             _spellManager.CastSpell(5);
 
+        if(Input.GetKeyDown(KeyCode.Space))
+            _attacker.TryAttack();
+
 
         UpdateMovement();
         if (Input.GetKeyDown(KeyCode.Mouse0))

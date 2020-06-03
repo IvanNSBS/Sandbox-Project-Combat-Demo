@@ -10,6 +10,7 @@ public class SpellUI : MonoBehaviour
     [SerializeField] private Image _radialFill;
     [SerializeField] private Image _radialFillGCD;
     [SerializeField] TMPro.TextMeshProUGUI _text;
+    [SerializeField] TMPro.TextMeshProUGUI _chargesText;
     public void SetIconAndBorder(Sprite border, Sprite icon)
     {
         if(_border && _icon)
@@ -32,6 +33,13 @@ public class SpellUI : MonoBehaviour
             _radialFillGCD.enabled = onGCD;
             _radialFillGCD.fillAmount = val;
         }
+    }
+
+    public void UpdateChargesText(int val, bool display = false){
+        if(!display)
+            _chargesText.text = string.Empty;
+        else
+            _chargesText.text = val.ToString();
     }
 
     public void UpdateCooldownText(float val)
