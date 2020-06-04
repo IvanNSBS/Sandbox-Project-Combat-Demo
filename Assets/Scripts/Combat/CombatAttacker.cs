@@ -15,7 +15,7 @@ public class CombatAttacker : MonoBehaviour, IParticipant
 
     [Header("Data")]
     [SerializeField] private GlobalTurnManager _turnManager;
-    [SerializeField] Weapon _weapon;
+    [SerializeField] public Weapon weapon;
 
 
     [Header("UI")]
@@ -31,8 +31,8 @@ public class CombatAttacker : MonoBehaviour, IParticipant
     
     public float atkRange {
         get {
-            if (_weapon != null)
-                return _weapon.atkRange;
+            if (weapon != null)
+                return weapon.atkRange;
 
             return -1f;
         } 
@@ -72,15 +72,21 @@ public class CombatAttacker : MonoBehaviour, IParticipant
         sq.InsertCallback(0f, () => {
             weaponSlot.CastSpell(gameObject);
 
-            GameplayUtils.SpawnSound(_weapon.spellSound, gameObject.transform.position);
+            GameplayUtils.SpawnSound(weapon.spellSound, gameObject.transform.position);
 
-            if (_weapon.instantiatedGO)
+            if (weapon.instantiatedGO)
             {
-                var atk = Instantiate(_weapon.instantiatedGO);
-                atk.transform.position = target.transform.position;
+                var atk = Instantiate(weapon.instantiatedGO);
+                WeaponFXFollow fxFollow = atk.GetComponent<WeaponFXFollow>();
+                if(fxFollow){
+                    fxFollow.transform.position = gameObject.transform.position;
+                    fxFollow.MoveTo(target.gameObject.transform.position);
+                }
+                else
+                    atk.transform.position = target.transform.position;
             }
 
-            // target.TakeDamage(_weapon.atkDamage);
+            // target.TakeDamage(weapon.atkDamage);
             // if (_dmgSounds.Count > 0)
             // {
             //     int count = _dmgSounds.Count - 1;
@@ -108,28 +114,31 @@ public class CombatAttacker : MonoBehaviour, IParticipant
 
     private void Update()
     {
-        // if (target != null)
-        //    TryAttack();
+        if(_slotUI != null){
+            weaponSlot.UpdateGCD(weaponSlot.currentCharges == 0, 1f - _turnManager.nextTurnProgress);
+            weaponSlot.spellIconAtUI.UpdateChargesText(weaponSlot.currentCharges, true);
 
-        weaponSlot.UpdateGCD(weaponSlot.currentCharges == 0, 1f - _turnManager.nextTurnProgress);
-        weaponSlot.spellIconAtUI.UpdateChargesText(weaponSlot.currentCharges, true);
+            if (weaponSlot.currentCharges == 0)
+                weaponSlot.spellIconAtUI.SetIconColor(new Color(0.4f, 0.4f, 0.4f));
+            else
+                weaponSlot.spellIconAtUI.SetIconColor(Color.white);
+        }
+    }
 
-        if (weaponSlot.currentCharges == 0)
-            weaponSlot.spellIconAtUI.SetIconColor(new Color(0.4f, 0.4f, 0.4f));
-        else
-            weaponSlot.spellIconAtUI.SetIconColor(Color.white);
+    public void RefreshCharges(){
+        weaponSlot.ResetCharges();
     }
 
     private void Start()
     {
         _spriteMaterial = _sprite.material;
 
-        if(_weapon != null){
-            weaponSlot = new SpellSlot(_weapon);
+        if(weapon != null){
+            weaponSlot = new SpellSlot(weapon);
 
             if(_slotUI != null){
                 var uiSlot = Instantiate(_spellUIPrefab, _slotUI.transform);
-                uiSlot.GetComponent<SpellUI>().SetIconAndBorder(_weapon.spellIconBG, _weapon.spellIcon);
+                uiSlot.GetComponent<SpellUI>().SetIconAndBorder(weapon.spellIconBG, weapon.spellIcon);
                 weaponSlot.spellIconAtUI = uiSlot.GetComponent<SpellUI>();
                 weaponSlot.spellIconAtUI.UpdateCooldownText(0f);
                 weaponSlot.spellIconAtUI.UpdateRadialFill(0f);
@@ -140,6 +149,6 @@ public class CombatAttacker : MonoBehaviour, IParticipant
     public void OnTurnPassed()
     {
         weaponSlot.ResetCharges();
-        _canAttack = _weapon.charges > 0;
+        _canAttack = weapon.charges > 0;
     }
 }

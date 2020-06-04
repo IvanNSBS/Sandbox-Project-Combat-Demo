@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa007ba45df9914468a98de3c8371ae6, type: 3}
+  m_Name: Staff
+  m_EditorClassIdentifier: 
+  spellName: Staff
+  cooldown: 3
+  manaCost: 0
+  charges: 2
+  spellIcon: {fileID: 21300000, guid: 86c842b0aefed5842b9597aecc531f04, type: 3}
+  spellIconBG: {fileID: 21300000, guid: 12bca970e9362d44d815108036294564, type: 3}
+  instantiatedGO: {fileID: 7964536171251834992, guid: 0b779ce47250ed242addc5bdb0d80945,
+    type: 3}
+  spellSound: {fileID: 8300000, guid: 7c4b8e2bd3eec5c438d9f8ee919c6973, type: 3}
+  atkDamage: 70
+  atkRange: 3.5

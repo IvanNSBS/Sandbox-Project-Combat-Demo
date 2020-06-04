@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e579cd6ccabaa7841bfab5e864cc9797, type: 3}
+  m_Name: Rage
+  m_EditorClassIdentifier: 
+  spellName: Rage
+  cooldown: 10
+  manaCost: 70
+  charges: 1
+  spellIcon: {fileID: 21300000, guid: 69e3694b5ce66f14490f4cb5f902334c, type: 3}
+  spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
+  instantiatedGO: {fileID: 4413963392414432778, guid: 941914add2d376346b6e463fc4da4caa,
+    type: 3}
+  spellSound: {fileID: 0}
+  flatBonusDamage: 400
+  bonusAtkPerTurn: 1
+  duration: 20
