@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rage
   m_EditorClassIdentifier: 
   spellName: Rage
-  cooldown: 10
+  cooldown: 16
   manaCost: 70
   charges: 1
   spellIcon: {fileID: 21300000, guid: 69e3694b5ce66f14490f4cb5f902334c, type: 3}
@@ -21,6 +21,6 @@ MonoBehaviour:
   instantiatedGO: {fileID: 4413963392414432778, guid: 941914add2d376346b6e463fc4da4caa,
     type: 3}
   spellSound: {fileID: 0}
-  flatBonusDamage: 400
+  flatBonusDamage: 50
   bonusAtkPerTurn: 1
-  duration: 20
+  duration: 10

@@ -21,5 +21,5 @@ MonoBehaviour:
   instantiatedGO: {fileID: 7964536171251834992, guid: 0b779ce47250ed242addc5bdb0d80945,
     type: 3}
   spellSound: {fileID: 8300000, guid: 7c4b8e2bd3eec5c438d9f8ee919c6973, type: 3}
-  atkDamage: 70
+  atkDamage: 55
   atkRange: 3.5

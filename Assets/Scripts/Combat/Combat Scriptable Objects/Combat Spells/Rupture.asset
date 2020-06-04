@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79bab658396cee49a8d5b8f8d5ed446, type: 3}
+  m_Name: Rupture
+  m_EditorClassIdentifier: 
+  spellName: Rupture
+  cooldown: 10
+  manaCost: 80
+  charges: 1
+  spellIcon: {fileID: 21300000, guid: aed6797026e2fc84f9b9a2e90af32206, type: 3}
+  spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
+  instantiatedGO: {fileID: 7181843689978194840, guid: 083ef6bfb0f1ad84c96130cdca0281a2,
+    type: 3}
+  spellSound: {fileID: 0}
+  totalDamage: 350
+  tickDelay: 0.2
+  duration: 14
