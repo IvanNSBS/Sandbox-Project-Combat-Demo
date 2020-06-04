@@ -25,12 +25,23 @@ public class HealthAndMana : MonoBehaviour
     private float _curHealth;
     private float _curMana;
 
+    [HideInInspector] public float resistancePct = 0f;
+    [HideInInspector] public float totalMitigatedDmg = 0f;
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        float actualDmg = (1f - resistancePct) * amount;
+        if(resistancePct > 0)
+            totalMitigatedDmg += resistancePct * amount;
+
+        currentHealth -= actualDmg;
         if (currentHealth <= 0f)
             Die.Invoke();
+    }
+
+    public void HealAndResetMitigatedDmg(float mitigateHeal){
+        currentHealth += mitigateHeal * totalMitigatedDmg;
+        totalMitigatedDmg = 0f;
     }
 
     void DefaultDie()
