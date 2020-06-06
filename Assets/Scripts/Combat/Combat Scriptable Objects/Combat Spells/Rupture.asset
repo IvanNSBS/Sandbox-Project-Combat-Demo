@@ -20,7 +20,7 @@ MonoBehaviour:
   spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
   instantiatedGO: {fileID: 7181843689978194840, guid: 083ef6bfb0f1ad84c96130cdca0281a2,
     type: 3}
-  spellSound: {fileID: 0}
+  spellSound: {fileID: 8300000, guid: cc9eb8a7f4368f94481c033e81027399, type: 3}
   totalDamage: 350
   tickDelay: 0.2
   duration: 14

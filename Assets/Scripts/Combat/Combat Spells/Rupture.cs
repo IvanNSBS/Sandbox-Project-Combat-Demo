@@ -33,6 +33,9 @@ public class Rupture : SpellObject
             dot.dmg = dmgPerTick;
             dot.tickDelay = tickDelay;
             dot.target = target;
+
+            GameplayUtils.SpawnSound(spellSound, target.transform.position);
+
         });
 
         sq.AppendInterval(duration);

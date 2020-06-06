@@ -37,5 +37,7 @@ public class DefensiveStance : SpellObject
 
             Destroy(fxInstance);
         });
+
+        GameplayUtils.SpawnSound(spellSound, caster.transform.position);
     }
 }

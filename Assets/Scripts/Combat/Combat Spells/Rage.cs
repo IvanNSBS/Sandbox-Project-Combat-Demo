@@ -37,5 +37,7 @@ public class Rage : SpellObject
             Destroy(fxInstance);
             //destroy rage fx here
         });
+
+        GameplayUtils.SpawnSound(spellSound, caster.transform.position);
     }
 }
