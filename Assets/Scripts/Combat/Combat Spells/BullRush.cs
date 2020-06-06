@@ -14,6 +14,7 @@ public class BullRush : SpellObject
 
     [Header("FX Properties")]
     public float fxDuration = 1f;
+    public Vector3 effectOffset = Vector3.zero;
 
 
     public override void Cast(GameObject caster){
@@ -34,15 +35,24 @@ public class BullRush : SpellObject
         float distance = Vector3.Distance(target.transform.position, caster.transform.position);
         float lerp = Mathf.Clamp01(distance/actualMaxDistance);
 
+
+        GameplayUtils.SpawnSound(spellSound, caster.transform.position);
+
         Sequence callbacks = DOTween.Sequence();
+        var fx = Instantiate(instantiatedGO, target.transform);
         callbacks.AppendCallback( () => {
             target.GetComponent<AIFollow>().ToggleActive(false);
             target.GetComponent<AISpellCaster>().enabled = false;
+
+            fx.transform.localPosition = effectOffset;
+
         } );
         callbacks.AppendInterval(stunDuration);
         callbacks.AppendCallback( () => {
             target.GetComponent<AIFollow>().ToggleActive(true);
             target.GetComponent<AISpellCaster>().enabled = true;
+
+            Destroy(fx);
         } );
 
         Sequence sq = DOTween.Sequence();

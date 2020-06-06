@@ -18,8 +18,9 @@ MonoBehaviour:
   charges: 1
   spellIcon: {fileID: 21300000, guid: ba7042b9f2ac6e648bba5489b4a9ff12, type: 3}
   spellIconBG: {fileID: 21300000, guid: 12bca970e9362d44d815108036294564, type: 3}
-  instantiatedGO: {fileID: 0}
-  spellSound: {fileID: 0}
+  instantiatedGO: {fileID: 5018323496799399129, guid: 38a1d21434ff8ea49a2efad23390b7d1,
+    type: 3}
+  spellSound: {fileID: 8300000, guid: c854ca271d1406740a4bc2be3c79f1b2, type: 3}
   damage: 50
   stunDuration: 3
   dashDuration: 0.11
@@ -27,3 +28,4 @@ MonoBehaviour:
   punchDuration: 0.12
   punchAtkRangeMult: 0.3
   fxDuration: 1
+  effectOffset: {x: 0, y: 0.8, z: 0}
