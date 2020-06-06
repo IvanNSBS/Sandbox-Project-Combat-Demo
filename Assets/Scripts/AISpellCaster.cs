@@ -56,6 +56,8 @@ public class AISpellCaster : MonoBehaviour, IParticipant
         sq.Append( _spriteObject.transform.DOLocalMoveY(0f, 0.07f, false));
         sq.Join(_spriteObject.GetComponent<SpriteRenderer>().material.DOFloat(1f, "_Lerp", 0.1f));
         sq.InsertCallback(1.25f,() => { 
+            if(!this.enabled)
+                return;
             _spellManager.CastSpell(spellIdx);
             _curTurnsWithoutCasting = RandomNumberOfActionlessTurns();
         });

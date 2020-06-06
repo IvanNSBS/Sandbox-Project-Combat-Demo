@@ -9,6 +9,8 @@ public class AIFollow : MonoBehaviour
     [SerializeField] float _sightRadius;
     [SerializeField] MaterialManager _materialManager;
 
+
+    private bool _active = true;
     private Rigidbody _rb;
     // Start is called before the first frame update
     void Start()
@@ -16,9 +18,16 @@ public class AIFollow : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    public void ToggleActive(bool val){ _active = val; }
+
     // Update is called once per frame
     void Update()
     {
+        if(!_active){
+            _actorMovement.moveDir = Vector3.zero;
+            return;
+        }
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, _sightRadius, 1 << 8);
         bool foundSomething = false;
         foreach(var col in colliders)
