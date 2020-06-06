@@ -8,6 +8,8 @@ public class MaterialManager : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
+    public Material material {get => _spriteRenderer.material; set => _spriteRenderer.material = value; }
+
     /// <summary>
     /// W = North, but flipped
     /// A = North, not flipped
@@ -26,6 +28,10 @@ public class MaterialManager : MonoBehaviour
         //    _cutoutMaterial.SetTexture("_BaseMap", _southSpriteSheet.texture);
 
         _spriteRenderer.flipX = flipX;
+    }
+
+    public void SetMaterialFloat(string propertyName, float value){
+        _spriteRenderer.material.SetFloat(propertyName, value);
     }
 
     // Start is called before the first frame update

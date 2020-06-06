@@ -21,6 +21,6 @@ MonoBehaviour:
   instantiatedGO: {fileID: 7181843689978194840, guid: 083ef6bfb0f1ad84c96130cdca0281a2,
     type: 3}
   spellSound: {fileID: 8300000, guid: cc9eb8a7f4368f94481c033e81027399, type: 3}
-  totalDamage: 350
+  totalDamage: 1500
   tickDelay: 0.2
-  duration: 14
+  duration: 2

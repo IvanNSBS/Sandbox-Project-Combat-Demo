@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using DG.Tweening;
 
 public class AIFollow : MonoBehaviour
 {
@@ -20,9 +19,14 @@ public class AIFollow : MonoBehaviour
 
     public void ToggleActive(bool val){ _active = val; }
 
+    private bool masterActive = true;
+
     // Update is called once per frame
     void Update()
     {
+        if(!masterActive)
+            return;
+
         if(!_active){
             _actorMovement.moveDir = Vector3.zero;
             return;
@@ -56,6 +60,17 @@ public class AIFollow : MonoBehaviour
         }
 
         UpdateDirection();
+    }
+
+    public void DissolveAndDie(){
+
+        AISpellCaster spcaster = gameObject.GetComponent<AISpellCaster>();
+        spcaster.enabled = false;
+        masterActive = false;
+
+        Sequence sq = DOTween.Sequence();
+        sq.Append( _materialManager.material.DOFloat(0f, "_Fade", 1f) );
+        sq.AppendCallback( () => Destroy(gameObject) );
     }
 
     void UpdateDirection()
