@@ -23,6 +23,8 @@ public class CombatAttacker : MonoBehaviour, IParticipant
     [SerializeField] GameObject _spellUIPrefab;
 
 
+    [HideInInspector] public int currentCharges {get => weaponSlot.currentCharges; } 
+
 
     private SpellSlot weaponSlot;
     private Material _spriteMaterial;
@@ -88,10 +90,10 @@ public class CombatAttacker : MonoBehaviour, IParticipant
         });
     }
 
-    public void TryAttack()
+    public bool TryAttack()
     {
         if(weaponSlot.currentCharges == 0)
-            return;
+            return false;
 
         if(target != null && _canAttack)
         {
@@ -99,8 +101,11 @@ public class CombatAttacker : MonoBehaviour, IParticipant
             {
                 AnimateAndAttack();
                 _canAttack = weaponSlot.currentCharges > 0;
+                return true;
             }
         }
+
+        return false;
     }
 
     private void Update()
