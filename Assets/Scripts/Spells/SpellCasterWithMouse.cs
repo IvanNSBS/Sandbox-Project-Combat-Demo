@@ -48,8 +48,6 @@ public class SpellCasterWithMouse : MonoBehaviour
             return false;
 
         bool retrn = spellToCast.CastSpell(gameObject);
-        if(retrn)
-            spellToCastIsRdy = false;
         return retrn;
     }
 
@@ -60,6 +58,7 @@ public class SpellCasterWithMouse : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0)){
                 spellToCast.CastSpell(gameObject);
                 spellToCast = null;
+                spellToCastIsRdy = false;
             }
         }
     }

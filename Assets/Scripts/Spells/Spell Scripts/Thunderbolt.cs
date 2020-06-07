@@ -9,6 +9,15 @@ public class Thunderbolt : SpellObject
     public float duration = 2.5f;
     public float damage = 20f;
 
+    public override bool PrepareCast(GameObject caster, SpellSlot slot = null){
+        var mouse = caster.GetComponent<SpellCasterWithMouse>();
+        mouse.areaRadius = 0.9f;
+        mouse.spellToCast = slot;
+        mouse.spellToCastIsRdy = true;
+
+        return true;
+    }
+
     public override bool Cast(GameObject caster)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
