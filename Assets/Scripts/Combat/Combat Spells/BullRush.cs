@@ -29,10 +29,11 @@ public class BullRush : SpellObject
         HealthAndMana target = _casterAtk.target;
 
         float atkRange = _casterAtk.weapon.atkRange;
-        Vector3 dir = (target.transform.position - caster.transform.position);
+        Vector3 targetPos = new Vector3(target.transform.position.x, caster.transform.position.y, target.transform.position.z);
+        Vector3 dir = (targetPos - caster.transform.position);
         float actualMaxDistance = distanceForMaxDuration - dir.normalized.magnitude*atkRange;
 
-        float distance = Vector3.Distance(target.transform.position, caster.transform.position);
+        float distance = Vector3.Distance(targetPos, caster.transform.position);
         float lerp = Mathf.Clamp01(distance/actualMaxDistance);
 
 
@@ -56,7 +57,7 @@ public class BullRush : SpellObject
         } );
 
         Sequence sq = DOTween.Sequence();
-        sq.Append( caster.transform.DOMove(target.transform.position - dir.normalized, dashDuration*lerp, false) );
+        sq.Append( caster.transform.DOMove(targetPos - dir.normalized, dashDuration*lerp, false) );
         sq.Append( caster.transform.DOPunchPosition(dir.normalized*atkRange*punchAtkRangeMult, punchDuration, 11, 0f, false) );
         sq.Insert(0f, callbacks);
 

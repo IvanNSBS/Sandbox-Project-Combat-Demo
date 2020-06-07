@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Image _UISpellsParent;
     [SerializeField] private GameObject _spellSlotPrefab;
+    [SerializeField] private bool _spriteLookAtTarget = false;
 
     private CombatAttacker _attacker;
     private SpellManager _spellManager;
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
         if (k == KeyCode.W)
         {
             _movement.moveDir = (_upDir.position - gameObject.transform.position).normalized;
-            if (_attacker.target == null)
+            if (_attacker.target == null || !_spriteLookAtTarget)
                 _matManager.UpdateSpriteAndMaterial(-1, true);
             else
                 UpdateSpriteFromTargetDir();
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
         else if (k == KeyCode.A)
         {
             _movement.moveDir = -(_rightDir.position - gameObject.transform.position).normalized;
-            if (_attacker.target == null)
+            if (_attacker.target == null || !_spriteLookAtTarget)
                 _matManager.UpdateSpriteAndMaterial(-1, false);
             else
                 UpdateSpriteFromTargetDir();
@@ -112,7 +113,7 @@ public class PlayerController : MonoBehaviour
         else if (k == KeyCode.S)
         {
             _movement.moveDir = -(_upDir.position - gameObject.transform.position).normalized;
-            if (_attacker.target == null)
+            if (_attacker.target == null || !_spriteLookAtTarget)
                 _matManager.UpdateSpriteAndMaterial(1, false);
             else
                 UpdateSpriteFromTargetDir();
@@ -120,7 +121,7 @@ public class PlayerController : MonoBehaviour
         else if (k == KeyCode.D)
         {
             _movement.moveDir = (_rightDir.position - gameObject.transform.position).normalized;
-            if (_attacker.target == null)
+            if (_attacker.target == null || !_spriteLookAtTarget)
                 _matManager.UpdateSpriteAndMaterial(1, true);
             else
                 UpdateSpriteFromTargetDir();
