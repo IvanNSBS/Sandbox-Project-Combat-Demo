@@ -20,7 +20,7 @@ public class FireBomb : SpellObject
 
     private float duration;
 
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         duration = delayBetweenWaves * numOfWaves + 2f;
 
@@ -71,6 +71,8 @@ public class FireBomb : SpellObject
             int vibrato = 20;
             Camera.main.DOShakePosition(shakeDuration, strenght, vibrato, 45, true);
         });
+
+        return true;
 
     }
 }

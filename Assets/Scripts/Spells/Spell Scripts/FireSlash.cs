@@ -18,11 +18,11 @@ public class FireSlash : SpellObject
     public float spawnFXDuration = 0.5f;
     public GameObject spawnFXPrefab;
 
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         GameObject target = caster.GetComponent<CombatAttacker>().target.gameObject;
         if (!target)
-            return;
+            return false;
 
         Vector3 pointB = target.transform.position;
         pointB = new Vector3(pointB.x, caster.transform.position.y, pointB.z);
@@ -61,7 +61,8 @@ public class FireSlash : SpellObject
                 GameplayUtils.SpawnSound(slashSound, caster.transform.position);
             });
             sq.AppendInterval(delayBetweenSlashes);
-
         }
+
+        return true;
     }
 }

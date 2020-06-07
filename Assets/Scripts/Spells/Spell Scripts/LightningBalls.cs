@@ -10,7 +10,7 @@ public class LightningBalls : SpellObject
     public AudioClip onCastSound;
     public AudioClip loopSound;
 
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         var instance = Instantiate(instantiatedGO, caster.transform);
         instance.transform.localPosition = Vector3.zero;
@@ -35,5 +35,7 @@ public class LightningBalls : SpellObject
         var soundData = instance.GetComponent<SoundData>();
         soundData.sound = loopSound;
         soundData.loop = true;
+
+        return true;
     }
 }

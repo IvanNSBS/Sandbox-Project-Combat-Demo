@@ -16,11 +16,11 @@ public class DefensiveStance : SpellObject
 
 
     private GameObject fxInstance;
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         HealthAndMana stats = caster.GetComponent<HealthAndMana>();
         if(!stats)
-            return;
+            return false;
 
         Sequence sq = DOTween.Sequence();
 
@@ -39,5 +39,7 @@ public class DefensiveStance : SpellObject
         });
 
         GameplayUtils.SpawnSound(spellSound, caster.transform.position);
+
+        return true;
     }
 }

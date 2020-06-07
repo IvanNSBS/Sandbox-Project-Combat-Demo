@@ -12,11 +12,11 @@ public class WeaponSwing : SpellObject
     public Vector3 spawnOffset = Vector3.zero;
 
     private GameObject instantiatedFX;
-    public override void Cast(GameObject caster){
+    public override bool Cast(GameObject caster){
 
         CombatAttacker _casterAtk = caster.GetComponent<CombatAttacker>();
         if(!_casterAtk)
-            return;
+            return false; 
 
         var fx = Instantiate(instantiatedGO);
         fx.transform.position = caster.transform.position + spawnOffset;
@@ -35,5 +35,7 @@ public class WeaponSwing : SpellObject
 
         if(spellSound)
             GameplayUtils.SpawnSound(spellSound, caster.transform.position);
+
+        return true;
     }
 }

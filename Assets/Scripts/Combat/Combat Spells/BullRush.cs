@@ -17,14 +17,14 @@ public class BullRush : SpellObject
     public Vector3 effectOffset = Vector3.zero;
 
 
-    public override void Cast(GameObject caster){
+    public override bool Cast(GameObject caster){
 
         CombatAttacker _casterAtk = caster.GetComponent<CombatAttacker>();
         if(!_casterAtk)
-            return;
+            return false;
 
         if(!_casterAtk.target)
-            return;
+            return false;
 
         HealthAndMana target = _casterAtk.target;
 
@@ -60,6 +60,8 @@ public class BullRush : SpellObject
         sq.Append( caster.transform.DOMove(targetPos - dir.normalized, dashDuration*lerp, false) );
         sq.Append( caster.transform.DOPunchPosition(dir.normalized*atkRange*punchAtkRangeMult, punchDuration, 11, 0f, false) );
         sq.Insert(0f, callbacks);
+
+        return true;
 
     }
 }

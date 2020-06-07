@@ -14,5 +14,5 @@ public abstract class SpellObject : ScriptableObject
     public GameObject instantiatedGO;
     public AudioClip spellSound;
 
-    public abstract void Cast(GameObject caster);
+    public abstract bool Cast(GameObject caster);
 }

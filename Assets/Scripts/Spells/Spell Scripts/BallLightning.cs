@@ -11,7 +11,7 @@ public class BallLightning : SpellObject
     public float ballSpeed = 110f;
     public AudioClip castSound;
 
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         var instance = Instantiate(instantiatedGO);
         instance.transform.position = caster.transform.position;
@@ -26,6 +26,8 @@ public class BallLightning : SpellObject
         {
             pointB = hit.point;
         }
+        else
+            return false;
 
         pointB = new Vector3(pointB.x, caster.transform.position.y, pointB.z);
         ballMov.moveDir = pointB - caster.transform.position;
@@ -52,5 +54,7 @@ public class BallLightning : SpellObject
         var destroy = obj.AddComponent<DestroyAfterTime>();
         destroy.duration = src.clip.length;
         destroy.remainingTime = destroy.duration;
+
+        return true;
     }
 }

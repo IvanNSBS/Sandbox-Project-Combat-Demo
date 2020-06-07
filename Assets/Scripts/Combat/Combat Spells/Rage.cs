@@ -13,11 +13,11 @@ public class Rage : SpellObject
 
 
     private GameObject fxInstance;
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         CombatAttacker atkComponent = caster.GetComponent<CombatAttacker>();
         if(!atkComponent)
-            return;
+            return false;
 
         Sequence sq = DOTween.Sequence();
         sq.AppendCallback(() => {
@@ -39,5 +39,7 @@ public class Rage : SpellObject
         });
 
         GameplayUtils.SpawnSound(spellSound, caster.transform.position);
+        
+        return true;
     }
 }

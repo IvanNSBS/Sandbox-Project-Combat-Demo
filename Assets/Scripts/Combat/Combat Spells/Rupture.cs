@@ -12,15 +12,15 @@ public class Rupture : SpellObject
     public float duration = 10f;
 
     private GameObject instantiatedFX;
-    public override void Cast(GameObject caster){
+    public override bool Cast(GameObject caster){
         CombatAttacker _casterAtk = caster.GetComponent<CombatAttacker>();
         if(!_casterAtk)
-            return;
+            return false;
 
         HealthAndMana target = _casterAtk.target;
 
         if(!target)
-            return;
+            return false;
 
         float dmgPerTick = totalDamage / (duration/tickDelay);
         instantiatedFX = Instantiate(instantiatedGO, target.gameObject.transform);
@@ -43,5 +43,7 @@ public class Rupture : SpellObject
         sq.AppendCallback( () => {
             Destroy(instantiatedFX);
         } );
+
+        return true;
     }
 }

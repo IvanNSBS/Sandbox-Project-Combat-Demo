@@ -8,7 +8,7 @@ public class HealingAura : SpellObject
     public float duration = 10f;
     public float totalHeal = 100f;
 
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         float deltaHeal = totalHeal / duration;
 
@@ -34,5 +34,7 @@ public class HealingAura : SpellObject
         var destroy = obj.AddComponent<DestroyAfterTime>();
         destroy.duration = src.clip.length;
         destroy.remainingTime = destroy.duration;
+
+        return true;
     }
 }

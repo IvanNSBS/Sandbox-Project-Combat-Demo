@@ -9,7 +9,7 @@ public class Thunderbolt : SpellObject
     public float duration = 2.5f;
     public float damage = 20f;
 
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -18,6 +18,8 @@ public class Thunderbolt : SpellObject
         {
             spawnPos = hit.point;
         }
+        else
+            return false;
 
         var instance = Instantiate(instantiatedGO);
         instance.transform.position = spawnPos;
@@ -46,5 +48,7 @@ public class Thunderbolt : SpellObject
         float strenght = 0.65f;
         int vibrato = 20;
         Camera.main.DOShakePosition(shakeDuration, strenght, vibrato, 45, true);
+        
+        return true;
     }
 }

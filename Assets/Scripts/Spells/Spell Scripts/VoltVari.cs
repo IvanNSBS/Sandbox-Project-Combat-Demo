@@ -10,7 +10,7 @@ public class VoltVari : SpellObject
     public float damage = 120f;
     public float offset = 0.5f;
 
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -19,6 +19,8 @@ public class VoltVari : SpellObject
         {
             pointB = hit.point;
         }
+        else
+            return false;
         pointB = new Vector3(pointB.x, caster.transform.position.y, pointB.z);
         Vector3 direction = (pointB - caster.transform.position).normalized;
         var instance = Instantiate(instantiatedGO);
@@ -53,5 +55,7 @@ public class VoltVari : SpellObject
         float strenght = 0.65f;
         int vibrato = 20;
         Camera.main.DOShakePosition(shakeDuration, strenght, vibrato, 45, true);
+        
+        return true;
     }
 }

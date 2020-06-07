@@ -35,18 +35,19 @@ public class SpellSlot
         currentCharges = spell.charges;
     }
 
-    public void CastSpell(GameObject caster)
+    public bool CastSpell(GameObject caster)
     {
         if(currentCharges == 0)
-            return;
+            return false;
 
         if(currentCharges == spell.charges)
             currentCooldown = spell.cooldown;
 
         currentCharges--;
-        spell.Cast(caster);
         if(currentCharges == 0)
             onCooldown = true;
+
+        return spell.Cast(caster);
     }
 
     public SpellSlot(){}
@@ -75,29 +76,33 @@ public class SpellManager : MonoBehaviour, IParticipant
     [SerializeField] GlobalTurnManager _turnManager;
     private bool onGCD;
 
-    public void CastSpell(int idx)
+    public bool CastSpell(int idx)
     {
         if (onGCD)
-            return;
+            return false;
 
         if(idx >= 6 || idx < 0)
         {
             Debug.LogError("Trying to cast a spell at a invalid Index");
-            return;
+            return false;
         }
         if (_availableSpells[idx].isNull)
         {
             Debug.LogError("No spell avaiable at index " + idx);
-            return;
+            return false;
         }
 
         if (!_availableSpells[idx].onCooldown && _availableSpells[idx].manaCost <= status.currentMana)
         {
-            status.currentMana -= _availableSpells[idx].manaCost;
-            _availableSpells[idx].CastSpell(gameObject);
-
-            onGCD = true;
+            
+            if(_availableSpells[idx].CastSpell(gameObject)){
+                status.currentMana -= _availableSpells[idx].manaCost;
+                onGCD = true;
+                return true;
+            }
         }
+
+        return false;
     }
 
     public void OnTurnPassed()

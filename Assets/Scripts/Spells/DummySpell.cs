@@ -5,8 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spells/DummySpell")]
 public class DummySpell : SpellObject
 {
-    public override void Cast(GameObject caster)
+    public override bool Cast(GameObject caster)
     {
         Debug.Log("Casted Dummy Spell");
+        return true;
     }
 }
