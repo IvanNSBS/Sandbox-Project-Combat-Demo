@@ -23,4 +23,4 @@ MonoBehaviour:
   spellSound: {fileID: 8300000, guid: 0a6fc4bc10d2116458778f2d09f04738, type: 3}
   weaponDmgIncreaseInPct: 1.8
   duration: 1
-  spawnOffset: {x: 0.35, y: -0.41, z: 0.2}
+  spawnOffset: {x: 0.35, y: -0.4, z: 0.2}
