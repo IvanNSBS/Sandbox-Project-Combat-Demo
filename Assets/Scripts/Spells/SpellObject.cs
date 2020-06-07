@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public abstract class SpellObject : ScriptableObject
 {
@@ -15,4 +12,8 @@ public abstract class SpellObject : ScriptableObject
     public AudioClip spellSound;
 
     public abstract bool Cast(GameObject caster);
+
+    //By default just casts the spells. Necessary for spells that need to select
+    //an area to cast and release with mouse, for example.
+    public virtual bool PrepareCast(GameObject caster, SpellSlot slot = null){ return Cast(caster); }
 }

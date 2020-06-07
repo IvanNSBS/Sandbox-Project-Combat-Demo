@@ -70,7 +70,7 @@ public class CombatAttacker : MonoBehaviour, IParticipant
         });
 
         sq.InsertCallback(0f, () => {
-            weaponSlot.CastSpell(gameObject);
+            weaponSlot.PrepareCast(gameObject);
 
             GameplayUtils.SpawnSound(weapon.spellSound, gameObject.transform.position);
 
@@ -85,15 +85,6 @@ public class CombatAttacker : MonoBehaviour, IParticipant
                 else
                     atk.transform.position = target.transform.position;
             }
-
-            // target.TakeDamage(weapon.atkDamage);
-            // if (_dmgSounds.Count > 0)
-            // {
-            //     int count = _dmgSounds.Count - 1;
-            //     int idx = Random.Range(0, count);
-
-            //     GameplayUtils.SpawnSound(_dmgSounds[idx], gameObject.transform.position);
-            // }
         });
     }
 

@@ -10,6 +10,15 @@ public class VoltVari : SpellObject
     public float damage = 120f;
     public float offset = 0.5f;
 
+    public override bool PrepareCast(GameObject caster, SpellSlot slot = null){
+        var mouse = caster.GetComponent<SpellCasterWithMouse>();
+        mouse.areaRadius = 0f;
+        mouse.spellToCast = slot;
+        mouse.spellToCastIsRdy = true;
+
+        return true;
+    }
+
     public override bool Cast(GameObject caster)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -36,6 +36,11 @@ public class WeaponSwing : SpellObject
         if(spellSound)
             GameplayUtils.SpawnSound(spellSound, caster.transform.position);
 
+        float shakeDuration = 0.2f;
+        float strenght = 0.65f;
+        int vibrato = 20;
+        Camera.main.DOShakePosition(shakeDuration, strenght, vibrato, 45, true);
+
         return true;
     }
 }

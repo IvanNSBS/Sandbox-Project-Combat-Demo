@@ -35,7 +35,7 @@ public class SpellSlot
         currentCharges = spell.charges;
     }
 
-    public bool CastSpell(GameObject caster)
+    public bool PrepareCast(GameObject caster)
     {
         if(currentCharges == 0)
             return false;
@@ -46,6 +46,23 @@ public class SpellSlot
         currentCharges--;
         if(currentCharges == 0)
             onCooldown = true;
+
+        return spell.PrepareCast(caster, this);
+    }
+
+    public bool CastSpell(GameObject caster, bool updateStuff = false){
+
+        if(updateStuff){
+            if(currentCharges == 0)
+                return false;
+
+            if(currentCharges == spell.charges)
+                currentCooldown = spell.cooldown;
+
+            currentCharges--;
+            if(currentCharges == 0)
+                onCooldown = true;
+        }
 
         return spell.Cast(caster);
     }
@@ -95,7 +112,7 @@ public class SpellManager : MonoBehaviour, IParticipant
         if (!_availableSpells[idx].onCooldown && _availableSpells[idx].manaCost <= status.currentMana)
         {
             
-            if(_availableSpells[idx].CastSpell(gameObject)){
+            if(_availableSpells[idx].PrepareCast(gameObject)){
                 status.currentMana -= _availableSpells[idx].manaCost;
                 onGCD = true;
                 return true;

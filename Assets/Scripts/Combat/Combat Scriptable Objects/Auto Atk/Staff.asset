@@ -20,6 +20,6 @@ MonoBehaviour:
   spellIconBG: {fileID: 21300000, guid: 12bca970e9362d44d815108036294564, type: 3}
   instantiatedGO: {fileID: 7964536171251834992, guid: 0b779ce47250ed242addc5bdb0d80945,
     type: 3}
-  spellSound: {fileID: 8300000, guid: 7c4b8e2bd3eec5c438d9f8ee919c6973, type: 3}
+  spellSound: {fileID: 8300000, guid: ba6f6a876a3f8c04ab4a2a044d8820cb, type: 3}
   atkDamage: 55
-  atkRange: 3.5
+  atkRange: 4

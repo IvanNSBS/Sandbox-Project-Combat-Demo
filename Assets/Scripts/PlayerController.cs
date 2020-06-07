@@ -130,32 +130,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private BlockShineSelect _selected = null;
-
-    void CheckForSelectedBlock(){
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            var tempSelected = hit.collider.gameObject.GetComponent<BlockShineSelect>();
-            if(!tempSelected && _selected){ //didn't find but selected is not null
-                _selected.ToggleShining(false);
-                _selected = null;
-                return;
-            }
-
-            if(tempSelected && !_selected){ // find and nothing's selected
-                _selected = tempSelected;
-                _selected.ToggleShining(true);
-            }
-            else{ // find and something's selected
-                _selected.ToggleShining(false);
-                _selected = tempSelected;
-                _selected.ToggleShining(true);
-            }
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -237,7 +211,5 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        CheckForSelectedBlock();
     }
 }
