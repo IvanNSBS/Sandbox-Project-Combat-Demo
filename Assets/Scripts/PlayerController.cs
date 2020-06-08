@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -128,6 +126,10 @@ public class PlayerController : MonoBehaviour
         }
 
 
+    }
+
+    public void PlayerDeath(){
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     // Update is called once per frame

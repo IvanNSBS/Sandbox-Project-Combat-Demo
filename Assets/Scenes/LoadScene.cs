@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    public void Load()
+    public void LoadMelee()
     {
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("MeleeScene", LoadSceneMode.Single);
+    }
+
+    public void LoadCaster()
+    {
+        SceneManager.LoadScene("CasterScene", LoadSceneMode.Single);
     }
 }
