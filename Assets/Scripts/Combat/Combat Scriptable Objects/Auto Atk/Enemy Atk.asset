@@ -15,7 +15,7 @@ MonoBehaviour:
   spellName: Sword
   cooldown: 0
   manaCost: 0
-  charges: 1
+  charges: 2
   spellIcon: {fileID: 21300000, guid: d8a494b709770cf45aa01aab6e914345, type: 3}
   spellIconBG: {fileID: 21300000, guid: 12bca970e9362d44d815108036294564, type: 3}
   instantiatedGO: {fileID: 4076217181688171006, guid: 67931d2c48c027043a1b786dd8ddd61a,

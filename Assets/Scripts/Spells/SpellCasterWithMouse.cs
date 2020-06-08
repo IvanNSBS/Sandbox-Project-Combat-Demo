@@ -59,6 +59,8 @@ public class SpellCasterWithMouse : MonoBehaviour
                 spellToCast.CastSpell(gameObject);
                 spellToCast = null;
                 spellToCastIsRdy = false;
+                _selected.ToggleShining(false);
+                _selected = null;
             }
         }
     }
