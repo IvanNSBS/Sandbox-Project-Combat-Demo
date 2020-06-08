@@ -40,15 +40,17 @@ public class EnemySpawner : MonoBehaviour
 
         enemies.RemoveAll( item => item == null );
         aliveEnemies = enemies.Count;
+        Debug.Log("Num of Enemies Alive: " + aliveEnemies);
 
-        if(aliveEnemies < maxNumberOfAliveEnemies){
+
+        if(aliveEnemies < maxNumberOfAliveEnemies && clockToSpawnEnemy == null){
             clockToSpawnEnemy = Random.Range(minDelayBetweenSpawns, maxDelayBetweenSpawns);
         }
 
         if(clockToSpawnEnemy != null){
             clockToSpawnEnemy -= Time.deltaTime;
 
-            if(clockToSpawnEnemy <= 0f){
+            if(clockToSpawnEnemy.Value <= 0f){
                 enemies.Add(SpawnEnemy());
                 clockToSpawnEnemy = null;
             }

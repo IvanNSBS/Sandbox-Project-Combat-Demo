@@ -21,6 +21,6 @@ MonoBehaviour:
   instantiatedGO: {fileID: 4413963392414432778, guid: 941914add2d376346b6e463fc4da4caa,
     type: 3}
   spellSound: {fileID: 8300000, guid: 8ff0fccf3ba254a429431c8ba166f4a4, type: 3}
-  flatBonusDamage: 50
+  flatBonusDamage: 15
   bonusAtkPerTurn: 1
   duration: 7

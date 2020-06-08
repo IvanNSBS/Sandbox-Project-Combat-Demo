@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Defensive Stance
   m_EditorClassIdentifier: Assembly-CSharp::DefensiveStance
   spellName: Defensive Stance
-  cooldown: 7.5
+  cooldown: 9
   manaCost: 55
   charges: 1
   spellIcon: {fileID: 21300000, guid: 4af59d857c32f3a43a39499294115497, type: 3}
@@ -21,6 +21,6 @@ MonoBehaviour:
   instantiatedGO: {fileID: 4413963392414432778, guid: 0bd99d4b133c9854c8445a86c6a4674e,
     type: 3}
   spellSound: {fileID: 8300000, guid: 92e209a799fa946439c66c987abac0ef, type: 3}
-  duration: 3
-  reducedDmgTakenInPercent: 0.5
-  healPercentOfMitigatedDmg: 0.3
+  duration: 6
+  reducedDmgTakenInPercent: 0.25
+  healPercentOfMitigatedDmg: 0.8
