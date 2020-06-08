@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Volt Vari
   m_EditorClassIdentifier: 
   spellName: Volt Vari
-  cooldown: 12
-  manaCost: 100
+  cooldown: 6
+  manaCost: 90
+  charges: 1
   spellIcon: {fileID: 21300000, guid: 321fa5e64b73d14409b74d7b5890cd92, type: 3}
   spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
   instantiatedGO: {fileID: 5296572709635356162, guid: 9ce531351aff3b440bdc11d3f59bec6f,
     type: 3}
   spellSound: {fileID: 8300000, guid: 86149c09a4a5e2245aa498fa1a7180a2, type: 3}
   duration: 0.6
-  damage: 230
+  damage: 65
   offset: 0.65

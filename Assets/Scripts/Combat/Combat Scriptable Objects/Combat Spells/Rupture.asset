@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rupture
   m_EditorClassIdentifier: 
   spellName: Rupture
-  cooldown: 10
+  cooldown: 12
   manaCost: 80
   charges: 1
   spellIcon: {fileID: 21300000, guid: aed6797026e2fc84f9b9a2e90af32206, type: 3}
@@ -21,6 +21,6 @@ MonoBehaviour:
   instantiatedGO: {fileID: 7181843689978194840, guid: 083ef6bfb0f1ad84c96130cdca0281a2,
     type: 3}
   spellSound: {fileID: 8300000, guid: cc9eb8a7f4368f94481c033e81027399, type: 3}
-  totalDamage: 1500
-  tickDelay: 0.2
-  duration: 2
+  totalDamage: 180
+  tickDelay: 0.05
+  duration: 6

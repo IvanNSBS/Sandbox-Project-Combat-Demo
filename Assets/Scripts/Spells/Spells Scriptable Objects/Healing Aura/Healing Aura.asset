@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Healing Aura
   m_EditorClassIdentifier: 
   spellName: Healing Aura
-  cooldown: 12
-  manaCost: 70
+  cooldown: 14
+  manaCost: 90
+  charges: 1
   spellIcon: {fileID: 21300000, guid: 4946d86518f974c4e8ef902084c95ea3, type: 3}
   spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
   instantiatedGO: {fileID: 7854500640369900167, guid: 1a88f78a54c151440ba7547e34f92427,

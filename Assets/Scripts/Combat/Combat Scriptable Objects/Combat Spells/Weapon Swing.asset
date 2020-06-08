@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Weapon Swing
   m_EditorClassIdentifier: 
   spellName: Weapon Swing
-  cooldown: 0
-  manaCost: 25
+  cooldown: 6
+  manaCost: 70
   charges: 1
   spellIcon: {fileID: 21300000, guid: 5666878752d64ab448042b2531fcf226, type: 3}
   spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
   instantiatedGO: {fileID: 6956504147287187834, guid: 4edac28e4b02e3446b98e963eb2a1976,
     type: 3}
   spellSound: {fileID: 8300000, guid: 0a6fc4bc10d2116458778f2d09f04738, type: 3}
-  weaponDmgIncreaseInPct: 1.8
+  weaponDmgIncreaseInPct: 1.5
   duration: 1
   spawnOffset: {x: 0.35, y: -0.4, z: 0.2}

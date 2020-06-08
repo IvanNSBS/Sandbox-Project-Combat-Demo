@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: LightningBalls
   m_EditorClassIdentifier: Assembly-CSharp::LightningBalls
   spellName: Lightning Ball
-  cooldown: 3
-  manaCost: 65
+  cooldown: 9
+  manaCost: 100
+  charges: 1
   spellIcon: {fileID: 21300000, guid: 649bcf04c30dd47419e139472db8fe04, type: 3}
   spellIconBG: {fileID: 21300000, guid: 4c7afe81ead6fa342802ae55f4fc5645, type: 3}
   instantiatedGO: {fileID: 706703164653609677, guid: 6dd471afe1de72043b53e8c64898082f,
     type: 3}
   spellSound: {fileID: 8300000, guid: 9b409b2e65af3cf44b3fc61491dce714, type: 3}
-  duration: 4
-  damage: 60
+  duration: 5
+  damage: 40
   onCastSound: {fileID: 8300000, guid: 05f7e107e67fece469b382c40f118238, type: 3}
   loopSound: {fileID: 8300000, guid: 0e1818170044c484fa428f50793d9dd2, type: 3}

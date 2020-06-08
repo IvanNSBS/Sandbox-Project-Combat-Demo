@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Thunderbolt
   m_EditorClassIdentifier: 
   spellName: Thunderbolt
-  cooldown: 8
+  cooldown: 11
   manaCost: 120
+  charges: 1
   spellIcon: {fileID: 21300000, guid: ac61a5c0b7e259e4387403534fe814ac, type: 3}
   spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
   instantiatedGO: {fileID: 1879359951281585670, guid: b3c7c469d72418d429220cd6edded90f,
     type: 3}
   spellSound: {fileID: 8300000, guid: f2ec368a7c7c5374fa0796f491174671, type: 3}
   duration: 2.5
-  damage: 225
+  damage: 70

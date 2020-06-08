@@ -14,18 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Fire Slash
   cooldown: 9
-  manaCost: 60
+  manaCost: 120
+  charges: 1
   spellIcon: {fileID: 21300000, guid: 966f9371ac9a21c47bcce6e712d94f43, type: 3}
   spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
   instantiatedGO: {fileID: 1982540625191779006, guid: 623cb4277b1f239419af024982803fb3,
     type: 3}
   spellSound: {fileID: 8300000, guid: a5f09916bb9b2be4cab3073c2a3c858a, type: 3}
   slashSound: {fileID: 8300000, guid: 7c4b8e2bd3eec5c438d9f8ee919c6973, type: 3}
-  numOfSlashes: 3
-  delayBetweenSlashes: 0.45
+  numOfSlashes: 2
+  delayBetweenSlashes: 0.6
   slashLifetime: 10
-  damage: 25
-  slashSpeed: 450
+  damage: 45
+  slashSpeed: 550
   spawnFXDuration: 1
   spawnFXPrefab: {fileID: 4383677097350196418, guid: 919aca4e3c43faa4ab8d0fa30eef3312,
     type: 3}

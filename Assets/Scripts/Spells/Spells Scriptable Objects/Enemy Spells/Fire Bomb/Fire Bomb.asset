@@ -14,19 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Fire Bomb
   cooldown: 12
-  manaCost: 85
+  manaCost: 150
+  charges: 1
   spellIcon: {fileID: 21300000, guid: 1d7ce30735a2f2049b411ae3e986f708, type: 3}
   spellIconBG: {fileID: 21300000, guid: 7d15b7c1b87cb73438c36e3afc9ee0f2, type: 3}
   instantiatedGO: {fileID: 98062680740862244, guid: d8e003cb75d1f834ead6a6d12d335f8f,
     type: 3}
   spellSound: {fileID: 8300000, guid: 06e8d56c0a8b9004e96c996508dd45d1, type: 3}
   numOfWaves: 3
-  delayBetweenWaves: 0.15
+  delayBetweenWaves: 0.25
   waveDamage: 10
   yOffset: 0.5
-  finalWaveDelay: 0.4
+  finalWaveDelay: 0.6
   finalWaveDuration: 0.6
-  finalWaveDamage: 30
+  finalWaveDamage: 20
   finalWaveSound: {fileID: 8300000, guid: 189c47c2dcf5c7449845b411a74a1db1, type: 3}
   finalWaveGameObject: {fileID: 2536577102792194866, guid: 3da50f206fbe56d478941e3daa267fbc,
     type: 3}

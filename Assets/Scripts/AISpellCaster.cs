@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class AISpellCaster : MonoBehaviour, IParticipant
 {
+    [SerializeField] HealthAndMana _aiStatus;
     [SerializeField] SpellManager _spellManager;
     [SerializeField] CombatAttacker _attacker;
     [SerializeField] GlobalTurnManager _turnManager;
@@ -39,7 +40,9 @@ public class AISpellCaster : MonoBehaviour, IParticipant
         {
             int randomIdx = Random.Range(possibleIdxs[0], possibleIdxs[possibleIdxs.Count - 1]);
             possibleIdxs.Remove(randomIdx);
-            if (!_spellManager._availableSpells[randomIdx].onCooldown)
+
+            SpellSlot spell = _spellManager._availableSpells[randomIdx];
+            if (!spell.onCooldown && spell.manaCost <= _aiStatus.currentMana)
             {
                 AnimateAndCast(randomIdx);
                 break;

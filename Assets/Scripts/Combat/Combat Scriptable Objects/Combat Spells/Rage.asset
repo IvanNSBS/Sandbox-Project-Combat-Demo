@@ -23,4 +23,4 @@ MonoBehaviour:
   spellSound: {fileID: 8300000, guid: 8ff0fccf3ba254a429431c8ba166f4a4, type: 3}
   flatBonusDamage: 50
   bonusAtkPerTurn: 1
-  duration: 10
+  duration: 7
